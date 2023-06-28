@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Text to Speech Converter</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+
+<body>
+    <h1>Text to Speech Converter</h1>
+    <form action="/" method="POST">
+        <textarea name="text" placeholder="Enter the text to convert to speech" required></textarea>
+        <input type="text" name="save_as" placeholder="Enter the save file name (optional)">
+        <button class="button-save" type="submit" name="action" value="save">Save As</button>
+        <button type="submit">Convert to Speech</button>
+    </form>
+
+
+
+    {% if output_exists and save_as %}
+    <audio controls>
+        <source src="{{ url_for('static', filename=save_as + '.mp3') }}" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    {% endif %}
+
+</body>
+
+</html>
